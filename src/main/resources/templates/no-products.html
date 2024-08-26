@@ -130,31 +130,19 @@
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">ForkNow</div>
-                <a th:href="@{/}" href="/" class="back-button">Back to Home</a>
-            </div>
-        </div>
-    </header>
-
+<header>
     <div class="container">
-        <h1>Restaurants</h1>
-
-        <div class="restaurant-grid">
-            <div class="restaurant-card" th:each="restaurant: ${restaurants}">
-                <div class="restaurant-info">
-                    <h2 class="restaurant-name" th:text="${restaurant.name}">Tasty Bites</h2>
-                    <p class="restaurant-cuisine" th:text="${restaurant.description}">American, Burgers</p>
-                    <div class="restaurant-rating">
-                        <span class="star">★★★★☆</span>
-                        <span>4.5 (200+ reviews)</span>
-                    </div>
-                    <a th:href="@{/restaurant/{id}(id=${restaurant.id})}" href="/restaurant/{id}" class="order-button">Order Now</a>
-                </div>
-            </div>
+        <div class="header-content">
+            <div class="logo">ForkNow</div>
+            <a th:href="@{/}" href="/" class="back-button">Back to Home</a>
         </div>
     </div>
+</header>
+
+<div class="container">
+    <h1>Menus and products</h1>
+
+    <p>Sorry, this restaurant does not have any product for the moment.</p>
+</div>
 </body>
 </html>

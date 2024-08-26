@@ -50,6 +50,10 @@ public class RestauController {
         System.out.println("test");
         RestaurantDto restaurantDto = restaurantService.getRestaurantById(id);
         model.addAttribute("restaurant", restaurantDto);
-        return "products";
+        if (restaurantDto.getProducts().isEmpty()) {
+            return "no-products";
+        } else {
+            return "products";
+        }
     }
 }
