@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ForkNow - Home Food Delivery</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #FD9B3A;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            width: 100px;
+            height: 100px;
+            background-size: contain;
+        }
+
+        nav a {
+            color: #FFF;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #333;
+        }
+
+        .back-button {
+            background-color: #333;
+            color: #FFF;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .back-button:hover {
+            background-color: #555;
+            transform: scale(1.05);
+        }
+
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 50px 0;
+        }
+
+        .hero-div {
+            margin-top: 2em;
+        }
+
+        .hero p {
+            padding: 1em;
+        }
+
+        footer {
+            background-color: #333;
+            color: #FFF;
+            text-align: center;
+            padding: 20px 0;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <a href="/">
+            <div class="logo">
+                <img th:src="@{/images/ForkNow_logo.png}" src="../static/images/ForkNow_logo.png" alt="logo forknow">
+            </div>
+        </a>
+        <nav>
+            <a th:href="@{/}" href="/" class="back-button">Back to Home</a>
+            <a th:href="@{/logout}" href="/logout">Logout</a>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-div">
+            <p th:text="|Welcome ${currentUser.username}|">Welcome username</p>
+
+            <p><a th:href="@{/restaurant}" href="/addrestaurant">Mon/mes restaurant(s)</a></p>
+            <p><a th:href="@{/addrestaurant}" href="/addrestaurant">Ajouter mon restaurant</a></p>
+            <p><a th:href="@{/addproduct}" href="/addproduct">Ajouter un produit et/ou un menu </a></p>
+
+        </div>
+    </section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2024 ForkNow. All rights reserved.</p>
+    </div>
+</footer>
+</div>
+</body>
+</html>

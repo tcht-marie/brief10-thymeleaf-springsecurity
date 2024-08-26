@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ForkNow - My account</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #FD9B3A;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            width: 100px;
+            height: 100px;
+            background-size: contain;
+        }
+
+        nav a {
+            color: #FFF;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #333;
+        }
+
+        .back-button {
+            background-color: #333;
+            color: #FFF;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .back-button:hover {
+            background-color: #555;
+            transform: scale(1.05);
+        }
+
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2em 0;
+            margin-top: 5em;
+        }
+
+        .hero h3 {
+            font-size: 1.5em;
+        }
+
+        .hero form {
+            display: flex;
+            flex-direction: column;
+            padding: 2em;
+        }
+
+        .hero form label {
+            text-align: center;
+            padding-top: 0.5em;
+        }
+
+        .hero form input {
+            padding: 0.5em;
+            border-radius: 0.7em;
+            border: none;
+        }
+
+        #submit {
+            margin-top: 1em;
+        }
+
+        footer {
+            background-color: #333;
+            color: #FFF;
+            text-align: center;
+            padding: 20px 0;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <a href="/">
+            <div class="logo">
+                <img th:src="@{/images/ForkNow_logo.png}" src="../static/images/ForkNow_logo.png" alt="logo forknow">
+            </div>
+        </a>
+        <nav>
+            <a th:href="@{/}" href="/" class="back-button">Back to Home</a>
+            <a th:href="@{/logout}" href="/logout">Logout</a>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <h3>Enregistrez votre restaurant</h3>
+        <form th:action="@{/addrestaurant/save}" action="/addrestaurant/save" method="post" th:object="${restaurant}">
+            <label for="name">Name</label>
+            <input type="text" name="username" id="name" placeholder="Name" th:field="*{name}">
+
+            <label for="description">Description</label>
+            <input type="text" name="description" id="description" placeholder="Description" th:field="*{description}">
+
+            <label for="number">Number</label>
+            <input type="text" name="number" id="number" placeholder="Number" th:field="*{number}">
+
+            <label for="type">Type</label>
+            <input type="text" name="type" id="type" placeholder="Type" th:field="*{type}">
+
+            <label for="road">Road</label>
+            <input type="text" name="road" id="road" placeholder="Road" th:field="*{road}">
+
+            <label for="city">City</label>
+            <input type="text" name="city" id="city" placeholder="City" th:field="*{city}">
+
+            <label for="country">Country</label>
+            <input type="text" name="country" id="country" placeholder="Country" th:field="*{country}">
+
+            <input id="submit" type="submit" value="Register">
+            <a th:href="@{/addproduct}" href="/addproduct">Do you register a new product ? Click here !</a>
+        </form>
+
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 ForkNow. All rights reserved.</p>
+        </div>
+    </footer>
+</div>
+</body>
+</html>
