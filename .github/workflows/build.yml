@@ -13,6 +13,8 @@ jobs:
          java-version: 17
      - name: Setup gradle
        uses: gradle/actions/setup-gradle@v4
+     - name: Checkout clone source code
+       uses: actions/checkout@v4
      - name: Build with Gradle
-       run: gradle bootjar
+       run: ./gradlew bootjar
      - run: ls -lia build/libs
