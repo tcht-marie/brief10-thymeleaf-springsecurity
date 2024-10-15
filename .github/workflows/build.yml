@@ -15,6 +15,8 @@ jobs:
   build:
    name: Spring build
    runs-on: ubuntu-latest
+   # si get-version voit un commit qui permet une release (montée de version), il fait le build, sinon fait pas le build
+   if: ${{ needs.get-version.outputs.will-release == 'true' }}
    # on doit lui dire qu'on a besoin de get-version pour le build
    needs: 
      - get-version
