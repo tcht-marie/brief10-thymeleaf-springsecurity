@@ -1,20 +1,26 @@
+# a chaque push, la ci se lance
 on:
   push:
 
 jobs:
+  # name pour ce job
   get-version:
+    # récupération du code get-version sur le repo de shiipou sur la branche main
     uses: shiipou/github-actions/.github/workflows/get-version.yml@main
     with:
+      # détecter mes branches de release (je peux en mettre plusieurs)
       release-branches: '^(main)$'
     
-
+  # name pour un autre job
   build:
    name: Spring build
    runs-on: ubuntu-latest
+   # on doit lui dire qu'on a besoin de get-version pour le build
    needs: 
      - get-version
    steps:
      - name: Print version
+       # pipe pour mettre plusieurs echo dans le run
        run: |
          echo "${{ needs.get-version.outputs.version }}"
          echo "${{ needs.get-version.outputs.changelogs }}"
