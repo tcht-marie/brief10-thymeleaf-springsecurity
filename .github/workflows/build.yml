@@ -36,5 +36,8 @@ jobs:
      - name: Checkout clone source code
        uses: actions/checkout@v4
      - name: Build with Gradle
+       # variable d'environnement pour que gradle en ait connaissance
+       env:
+         VERSION: "${{ needs.get-version.outputs.version }}"
        run: ./gradlew bootjar
      - run: ls -lia build/libs
