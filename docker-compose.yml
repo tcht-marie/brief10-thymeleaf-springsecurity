@@ -1,0 +1,24 @@
+services:
+  spring:
+    image: first-container:latest
+    ports:
+      - "8080:8080"
+    networks:
+      - forknow-net
+
+  postgres:
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=spring-security
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - postgres_data:/var/lib/postgres/data
+    networks:
+      - forknow-net
+
+volumes:
+  postgres_data:
+
+networks:
+  forknow-net:
