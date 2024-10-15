@@ -10,6 +10,30 @@ jobs:
     with:
       # détecter mes branches de release (je peux en mettre plusieurs)
       release-branches: '^(main)$'
+
+  # name pour un autre job
+  test:
+   name: Spring test
+   runs-on: ubuntu-latest
+   steps:
+     - name: Print version
+       # pipe pour mettre plusieurs echo dans le run
+       run: |
+         echo "${{ needs.get-version.outputs.version }}"
+         echo "${{ needs.get-version.outputs.changelogs }}"
+         echo "${{ needs.get-version.outputs.is-prerelease }}"
+         echo "${{ needs.get-version.outputs.will-release }}"
+     - name: Setup java
+       uses: actions/setup-java@v4
+       with:
+         distribution: 'temurin'
+         java-version: 17
+     - name: Setup gradle
+       uses: gradle/actions/setup-gradle@v4
+     - name: Checkout clone source code
+       uses: actions/checkout@v4
+     - name: Build with Gradle
+       run: ./gradlew test
     
   # name pour un autre job
   build:
