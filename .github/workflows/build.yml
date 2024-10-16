@@ -2,6 +2,9 @@
 on:
   push:
 
+permissions:
+  contents: write
+
 jobs:
   # name pour ce job
   get-version:
@@ -97,6 +100,7 @@ jobs:
           VERSION: "${{ needs.get-version.outputs.version }}"
           REPO: "${{ github.repository }}"
           COMMIT: "${{ github.sha }}"
+          GH_TOKEN: "${{ github.token }}"
         # $REPO = le repo sur lequel on veut que ça se fasse
         # $COMMIT = le commit en rapport au push (prend donc le bon commit et non le dernier effectué)
         # $VERSION = la version récupérée du get-version
