@@ -2,6 +2,7 @@
 on:
   push:
 
+# on doit donner la permission au GH_TOKEN du job Release pour qu'il puisse créer la release (sinon que le droit de lecture)
 permissions:
   contents: write
 
@@ -52,7 +53,7 @@ jobs:
    runs-on: ubuntu-latest
    # si get-version voit un commit qui permet une release (montée de version), il fait le build, sinon fait pas le build
    if: ${{ needs.get-version.outputs.will-release == 'true' }}
-   # on doit lui dire qu'on a besoin de get-version pour le build
+   # on doit lui dire qu'on a besoin de get-version pour le build (récupère que les sorties du job)
    needs: 
      - get-version
    steps:
@@ -86,6 +87,7 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
+    # récupère que les sorties du job get-version et build (outputs)
     needs:
       - get-version
       - build
@@ -104,6 +106,7 @@ jobs:
         # $REPO = le repo sur lequel on veut que ça se fasse
         # $COMMIT = le commit en rapport au push (prend donc le bon commit et non le dernier effectué)
         # $VERSION = la version récupérée du get-version
+        # GH_TOKEN = connu et généré par github
         run: |
           gh release create --repo $REPO --target $COMMIT $VERSION build/*
 
